@@ -1,4 +1,5 @@
-import com.plcoding.convention.libs
+import com.plcoding.convention.DependencyProvider
+import com.plcoding.convention.implementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -12,10 +13,10 @@ class AndroidApplicationWearComposeConventionPlugin: Plugin<Project> {
             }
 
             dependencies {
-                "implementation"(libs.findLibrary("androidx.wear.compose.material").get())
-                "implementation"(libs.findLibrary("androidx.wear.compose.foundation").get())
-                "implementation"(libs.findLibrary("androidx.wear.compose.ui.tooling").get())
-                "implementation"(libs.findLibrary("play.services.wearable").get())
+                implementation(target, DependencyProvider.LIBRARY, "androidx.wear.compose.material")
+                implementation(target, DependencyProvider.LIBRARY, "androidx.wear.compose.foundation")
+                implementation(target, DependencyProvider.LIBRARY, "androidx.wear.compose.ui.tooling")
+                implementation(target, DependencyProvider.LIBRARY, "play.services.wearable")
             }
         }
     }

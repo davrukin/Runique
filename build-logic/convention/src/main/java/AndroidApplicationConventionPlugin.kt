@@ -2,7 +2,8 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.plcoding.convention.ExtensionType
 import com.plcoding.convention.configureBuildTypes
 import com.plcoding.convention.configureKotlinAndroid
-import com.plcoding.convention.libs
+import com.plcoding.convention.libVersionInt
+import com.plcoding.convention.libVersionString
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -18,11 +19,11 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             }
             extensions.configure<ApplicationExtension> {
                 defaultConfig {
-                    applicationId = libs.findVersion("projectApplicationId").get().toString()
-                    targetSdk = libs.findVersion("projectTargetSdkVersion").get().toString().toInt()
+                    applicationId = libVersionString("projectApplicationId")
+                    targetSdk = libVersionInt("projectTargetSdkVersion")
 
-                    versionCode = libs.findVersion("projectVersionCode").get().toString().toInt()
-                    versionName = libs.findVersion("projectVersionName").get().toString()
+                    versionCode = libVersionInt("projectVersionCode")
+                    versionName = libVersionString("projectVersionName")
                 }
 
                 configureKotlinAndroid(this)
